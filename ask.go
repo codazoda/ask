@@ -12,11 +12,16 @@ import (
 func main() {
 
 	// Setup the command line arguments we accept
-	repeatQuestion := flag.Bool("q", false, "repeat the question before answering it")
+	repeatQuestion := flag.Bool("q", false, "Repeat the question before answering it")
 
 	// Parse the command line and grab the first non-flag command-line argument
 	flag.Parse()
 	question := flag.Arg(0)
+
+	// If no question was asked, provide help output
+	if len(question) < 1 {
+		showSyntax()
+	}
 
 	// Call the OpenAI API and return the response
 	token := os.Getenv("OPENAI_API_KEY")
@@ -46,4 +51,11 @@ func main() {
 	// Output the answer
 	fmt.Println(resp.Choices[0].Message.Content)
 
+}
+
+func showSyntax() {
+	fmt.Println("Usage: ask [options] \"question\"")
+	fmt.Println("Options:")
+	flag.PrintDefaults()
+	os.Exit(0)
 }
