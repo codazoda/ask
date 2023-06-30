@@ -2,6 +2,8 @@
 
 A command-line utility for asking AI questions.  It sends your question to the OpenAI API.
 
+This utility does not have a stable usage yet. The command-line options are likely to change. This is an early proof of concept (PoC).
+
 Called _AskAI_ to disambiguate or just _Ask_ for short.
 
 Usage:
@@ -35,8 +37,12 @@ go build
 
 ## Arguments
 
---help  help with the list of command-line arguments available
--q      repeat the question before answering it
+```
+Usage: ask [options] "question"
+Options:
+  --help  Display help for the list of command-line arguments
+  -q      Repeat the question before answering it
+```
 
 
 ## Future
