@@ -1,6 +1,8 @@
-# Ask
+# AskAI
 
-This is a command-line utility for asking AI questions. It makes a call to the OpenAI API.
+A command-line utility for asking AI questions.  It sends your question to the OpenAI API.
+
+Called __AskAI__ to disambiguate or just `ask` for short.
 
 Usage:
 ```
@@ -13,7 +15,7 @@ ask "Write a summary for me"
 - Add the OPENAI_API_KEY to your environment variables
 - Compile ask
 
-Ask reads the OpenAPI key from the OPENAI_API_KEY environment variable and uses that to authenticate with the API. So, add your key to the environment with something like the following.
+AskAI reads the OpenAPI key from the OPENAI_API_KEY environment variable and uses that to authenticate with the API. So, add your key to the environment with something like the following.
 
 ```
 export OPENAI_API_KEY=your_key_goes_here
@@ -24,7 +26,7 @@ Alternatively, add the above export statement to the `~/.bashrc`, `~/.zshrc`, or
 
 ## Compiling
 
-Ask is written in Go. Once you've installed Go you can compile `ask` by cloning this repo and then running the following command in the root directory.
+AskAI is written in Go. Once you've installed Go you can compile `ask` by cloning this repo and then running the following command in the root directory.
 
 ```
 go build
