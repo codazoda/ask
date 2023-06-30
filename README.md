@@ -2,7 +2,7 @@
 
 A command-line utility for asking AI questions.  It sends your question to the OpenAI API.
 
-Called __AskAI__ to disambiguate or just `ask` for short.
+Called _AskAI_ to disambiguate or just _Ask_ for short.
 
 Usage:
 ```
