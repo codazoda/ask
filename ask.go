@@ -13,7 +13,7 @@ func main() {
 
 	// Setup the command line arguments we accept
 	repeatQuestion := flag.Bool("r", false, "Repeat the question before answering it")
-	repeatQuestion := flag.Bool("q", false, "Send this question")
+	//question := flag.Bool("q", false, "Send this question")
 
 	// Parse the command line and grab the first non-flag command-line argument
 	flag.Parse()
