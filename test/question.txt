@@ -1,13 +1,1 @@
-The following is a list of numbers that can be translated to one or more characters. Use this table to translate each character in the number 9174878 into as many words or phrases as possible. Use all 7 digits in each return. Numbers and letter combinations are okay. For example, "917GUS8" is fine, having the name "GUS" proceeded and followed by numbers.
-
-"""
-1 = 1
-2 = 2, A, B, C
-3 = 3, D, E, F
-4 = 4, G, H, I
-5 = 5, J, K, L
-6 = 6, M, N, O
-7 = 7, P, Q, R, S
-8 = 8, T, U, V
-9 = 9, W, X, Y, Z
-"""
+What is the diameter of the earth in miles?

@@ -4,8 +4,6 @@ A command-line utility for asking AI questions.  It sends your question to the O
 
 This utility does not have a stable usage yet. The command-line options are likely to change. This is an early proof of concept (PoC).
 
-Called _AskAI_ to disambiguate or just _Ask_ for short.
-
 Usage:
 ```
 ask "Write a summary for me"
@@ -17,7 +15,7 @@ ask "Write a summary for me"
 - Add the OPENAI_API_KEY to your environment variables
 - Compile ask
 
-AskAI reads the OpenAPI key from the OPENAI_API_KEY environment variable and uses that to authenticate with the API. So, add your key to the environment with something like the following.
+Ask reads the OpenAPI key from the OPENAI_API_KEY environment variable and uses that to authenticate with the API. So, add your key to the environment with something like the following.
 
 ```
 export OPENAI_API_KEY=your_key_goes_here
@@ -53,3 +51,8 @@ Some things I might want to do in the future.
 - Build binaries for popular operating systems
 - Add an option to change the model
 - Maybe support other AI API's
+
+
+## The Name
+
+I use the names _AskAI_ and _Ask_ interchangably. The official name of the project is _AskAI_ but I use _Ask_ for short and for the command-line filename. I do so because _Ask_ is not specific enough for search queries or conversations but it works well as the name of the command-line binary.
