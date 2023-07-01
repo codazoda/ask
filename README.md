@@ -51,5 +51,5 @@ Some things I might want to do in the future.
 
 - Add a license
 - Build binaries for popular operating systems
-- Add an option to change the 
+- Add an option to change the model
 - Maybe support other AI API's
