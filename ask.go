@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/codazoda/lil/env"
 	"github.com/sashabaranov/go-openai"
 )
 
@@ -26,11 +27,12 @@ func main() {
 
 	// Call the OpenAI API and return the response
 	token := os.Getenv("OPENAI_API_KEY")
+	model := env.GetEnv("OPENAI_MODEL", "gpt-3.5-turbo")
 	client := openai.NewClient(token)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
-			Model: openai.GPT3Dot5Turbo,
+			Model: model,
 			Messages: []openai.ChatCompletionMessage{
 				{
 					Role:    openai.ChatMessageRoleUser,
