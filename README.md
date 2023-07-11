@@ -32,6 +32,12 @@ AskAI is written in Go. Once you've installed Go you can compile `ask` by clonin
 go build
 ```
 
+There is also a `build.sh` shell script that cross-compiles `ask` for lots of different architectures. Run the following command to build all the architectures. 
+
+```
+./build.sh
+```
+
 
 ## Arguments
 
