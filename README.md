@@ -2,6 +2,8 @@
 
 A command-line utility for asking AI questions.  It sends your question to the OpenAI API.
 
+![Demo of Ask Command Line](docs/image/ask.gif)
+
 This utility does not have a stable usage yet. The command-line options are likely to change. This is an early proof of concept (PoC).
 
 Usage:
