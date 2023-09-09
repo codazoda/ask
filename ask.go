@@ -1,24 +1,42 @@
 package main
 
 import (
+	"bytes"
 	"context"
 	"flag"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/codazoda/lil/env"
+	"github.com/codazoda/lil/file"
 	"github.com/sashabaranov/go-openai"
 )
 
 func main() {
 
+	// Define variables
+	var system string
+
 	// Setup the command line arguments we accept
 	repeatQuestion := flag.Bool("r", false, "Repeat the question before answering it")
-	//question := flag.Bool("q", false, "Send this question")
+	systemRole := flag.String("s", "", "Read the specified file into the system role")
 
 	// Parse the command line and grab the first non-flag command-line argument
 	flag.Parse()
 	question := flag.Arg(0)
+
+	// Set the system role to a default or load the contents of a text file
+	if *systemRole == "" {
+		system = "You are a helpful assistant."
+	} else {
+		var err error
+		system, err = readFile(*systemRole)
+		if err != nil {
+			fmt.Printf("File error: %v\n", err)
+			return
+		}
+	}
 
 	// If no question was asked, provide help output
 	if len(question) < 1 {
@@ -35,6 +53,10 @@ func main() {
 			Model: model,
 			Messages: []openai.ChatCompletionMessage{
 				{
+					Role:    openai.ChatMessageRoleSystem,
+					Content: system,
+				},
+				{
 					Role:    openai.ChatMessageRoleUser,
 					Content: question,
 				},
@@ -46,14 +68,41 @@ func main() {
 		return
 	}
 
-	// If the -q flag was present, repeat the question in the output
+	// If the flag was present, repeat the question in the output
 	if *repeatQuestion {
 		fmt.Printf("\"%s\"\n\n", question)
 	}
 
 	// Output the answer
+	fmt.Println()
 	fmt.Println(resp.Choices[0].Message.Content)
 
+}
+
+func readFile(name string) (string, error) {
+	// Find the XDG config directory
+	configPath, err := file.GetConfigDir("ask")
+	if err != nil {
+		fmt.Println("Cannot find config directory", err)
+		return "", err
+	}
+	// Open the specified system (preamble) file
+	file, err := os.Open(filepath.Join(configPath, "system", name+".txt"))
+	if err != nil {
+		return "", err
+	}
+	// Read the bytes from the file
+	buf := new(bytes.Buffer)
+	_, err = buf.ReadFrom(file)
+	if err != nil {
+		return "", err
+	}
+	// Close the file
+	file.Close()
+	// Convert the byte array into a string
+	fileString := buf.String()
+	// Return the contents of the file as a string
+	return fileString, nil
 }
 
 func showSyntax() {

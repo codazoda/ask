@@ -1,0 +1,5 @@
+- [ ] Add a website w/ architecture download magic
+- [ ] Check the issue tracker on GitHub
+- [ ] Write an installer of some type that adds a default config file
+- [x] Check if the argument is a filename that exists and use it's contents if so
+- [x] Pull a text file into the "system" role when the -r command line option is used

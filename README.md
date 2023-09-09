@@ -11,6 +11,10 @@ Usage:
 ask "Write a summary for me"
 ```
 
+```
+ask -s future "What does the future hold?"
+```
+
 
 ## Getting Started
 
@@ -24,6 +28,25 @@ export OPENAI_API_KEY=your_key_goes_here
 ```
 
 Alternatively, add the above export statement to the `~/.bashrc`, `~/.zshrc`, or equivelent file.
+
+
+## Configuration
+
+You can store preamble text in the `~/.config/ask/system/` directory as text files. For example, create a file called `future.txt` there and put the following text into it.
+
+```
+It's the year 2053.
+```
+
+Now you can run the following command to ask questions using the _future_ preamble.
+
+```
+ask -s future "What does the future hold?"
+```
+
+Ask uses the [XDG Directory Specification](https://xdgbasedirectoryspecification.com/) to store files in a way that is cross platform friendly.
+
+This directory is called `system` because OpenAI refers to the preamble as the _system_ message. By default it's something like, "You are a helpful assistant." Setting this is extremely useful for fine tuning the answers you get from the AI.
 
 
 ## Compiling
@@ -48,6 +71,7 @@ Usage: ask [options] "question"
 Options:
   --help  Display help for the list of command-line arguments
   -q      Repeat the question before answering it
+  -s      Read the specified file into the system role as a preamble
 ```
 
 
