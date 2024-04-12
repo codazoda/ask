@@ -87,7 +87,6 @@ func main() {
 	}
 
 	// Output the answer
-	fmt.Println()
 	fmt.Println(resp.Choices[0].Message.Content)
 
 }
