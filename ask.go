@@ -5,6 +5,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 
@@ -22,9 +23,26 @@ func main() {
 	repeatQuestion := flag.Bool("r", false, "Repeat the question before answering it")
 	systemRole := flag.String("s", "", "Read the specified file into the system role")
 
-	// Parse the command line and grab the first non-flag command-line argument
+	// Parse the command line
 	flag.Parse()
+
+	// Grab the first non-flag command-line argument
 	question := flag.Arg(0)
+
+	// If the question is still empty read from stdin
+	if len(question) < 1 {
+		var err error
+		question, err = readStdin()
+		if err != nil {
+			fmt.Println("Error reading from stdin:", err)
+			return
+		}
+	}
+
+	// If no question was asked, provide help output
+	if len(question) < 1 {
+		showSyntax()
+	}
 
 	// Set the system role to a default or load the contents of a text file
 	if *systemRole == "" {
@@ -36,11 +54,6 @@ func main() {
 			fmt.Printf("File error: %v\n", err)
 			return
 		}
-	}
-
-	// If no question was asked, provide help output
-	if len(question) < 1 {
-		showSyntax()
 	}
 
 	// Call the OpenAI API and return the response
@@ -77,6 +90,17 @@ func main() {
 	fmt.Println()
 	fmt.Println(resp.Choices[0].Message.Content)
 
+}
+
+func readStdin() (string, error) {
+	// Read all data from standard input
+	data, err := io.ReadAll(os.Stdin)
+	if err != nil {
+		return "", fmt.Errorf("error reading from stdin: %v", err)
+	}
+
+	// Convert byte data to string
+	return string(data), nil
 }
 
 func readFile(name string) (string, error) {

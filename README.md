@@ -51,16 +51,16 @@ This directory is called `system` because OpenAI refers to the preamble as the _
 
 ## Compiling
 
-AskAI is written in Go. Once you've installed Go you can compile `ask` by cloning this repo and then running the following command in the root directory.
-
-```
-go build
-```
-
-There is also a `build.sh` shell script that cross-compiles `ask` for lots of different architectures. Run the following command to build all the architectures. 
+There is also a `build.sh` shell script that cross-compiles `ask` for lots of different architectures. This puts all the builds in the `./docs` folder. Run the following command to build all the architectures. 
 
 ```
 ./build.sh
+```
+
+You can also compile `ask` by by running the following command in the root directory. This builds for the current architecture and outputs the file in the current directory.
+
+```
+go build
 ```
 
 
