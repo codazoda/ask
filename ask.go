@@ -21,6 +21,7 @@ func main() {
 
 	// Setup the command line arguments we accept
 	repeatQuestion := flag.Bool("r", false, "Repeat the question before answering it")
+	systemName := flag.Bool("n", false, "Output the name of the system role file (without extension)")
 	systemRole := flag.String("s", "", "Read the specified file into the system role")
 
 	// Parse the command line
@@ -84,6 +85,12 @@ func main() {
 	// If the flag was present, repeat the question in the output
 	if *repeatQuestion {
 		fmt.Printf("\"%s\"\n\n", question)
+	}
+
+	// If the flag was present, add the system role name to the beginning of
+	// the output
+	if *systemName {
+		fmt.Printf("%s: ", *systemRole)
 	}
 
 	// Output the answer
