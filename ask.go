@@ -30,13 +30,18 @@ func main() {
 	// Grab the first non-flag command-line argument
 	question := flag.Arg(0)
 
-	// If the question is still empty read from stdin
+	// If the question is still empty use any data piped from stdin
 	if len(question) < 1 {
-		var err error
-		question, err = readStdin()
-		if err != nil {
-			fmt.Println("Error reading from stdin:", err)
-			return
+		// Check if data was piped into stdin
+		fileInfo, _ := os.Stdin.Stat()
+		if (fileInfo.Mode() & os.ModeCharDevice) == 0 {
+			// Read the piped data from stdin
+			var err error
+			question, err = readStdin()
+			if err != nil {
+				fmt.Println("Error reading from stdin:", err)
+				return
+			}
 		}
 	}
 
