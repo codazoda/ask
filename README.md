@@ -4,15 +4,21 @@ A command-line utility for asking AI questions.  It sends your question to the O
 
 ![Demo of Ask Command Line](docs/image/ask.gif)
 
-This utility does not have a stable usage yet. The command-line options are likely to change. This is an early proof of concept (PoC).
+The command-line options are becoming more stable now but this is still beta.
 
 Usage:
 ```
 ask "Write a summary for me"
 ```
 
+You can also set a system message, which reads from a file:
 ```
 ask -s future "What does the future hold?"
+```
+
+You can now pipe questions in via standard input:
+```
+ask < question.txt
 ```
 
 
