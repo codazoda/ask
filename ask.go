@@ -65,7 +65,10 @@ func main() {
 	// Call the OpenAI API and return the response
 	token := os.Getenv("OPENAI_API_KEY")
 	model := env.GetEnv("OPENAI_MODEL", "gpt-3.5-turbo")
-	client := openai.NewClient(token)
+	url := env.GetEnv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+	config := openai.DefaultConfig(token)
+	config.BaseURL = url
+	client := openai.NewClientWithConfig(config)
 	resp, err := client.CreateChatCompletion(
 		context.Background(),
 		openai.ChatCompletionRequest{
